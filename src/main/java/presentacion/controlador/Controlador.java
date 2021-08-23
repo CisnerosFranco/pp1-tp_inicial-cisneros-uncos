@@ -53,16 +53,18 @@ public class Controlador implements ActionListener {
 					
 					
 					this.agenda.update(p);
-					this.refrescarTabla();
+					
+					
 				}
 			}
+			this.editor.cerrar(e);
+			this.refrescarTabla(); 
 		}
 
 		public void borrarPersona(ActionEvent s) {
 			int[] filasSeleccionadas = this.vista.getTablaPersonas().getSelectedRows();
 			for (int fila : filasSeleccionadas) {
 				this.agenda.borrarPersona(this.personasEnTabla.get(fila));
-				
 			}
 			this.refrescarTabla();
 		}
@@ -105,6 +107,7 @@ public class Controlador implements ActionListener {
 		
 		private void refrescarTabla() {
 			this.personasEnTabla = agenda.obtenerPersonas();
+			this.editor.setVisible(false);;
 			this.vista.llenarTabla(this.personasEnTabla);
 		}
 

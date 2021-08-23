@@ -218,12 +218,7 @@ public class Editor extends JFrame {
 		panel.add(lblLocalidad);
 		
 		
-		
-		
-		// ACTIONS
-		
-		
-		this.setVisible(false);
+		//this.btnGuardar.addActionListener(p -> cerrar(p));
 	}
 	
 	
@@ -275,11 +270,13 @@ public class Editor extends JFrame {
 	
 	private void cargarProvincias() {
 		this.provincia.removeAllItems();
-		int fk = getPK(this.pais.getSelectedItem().toString());
-		List<Trupla> prov = U.getProvincias(fk);
-		if(!prov.isEmpty()) {
-			for(Trupla p : prov) {
-				this.provincia.addItem(p.getId()+"."+p.getId_2()+"."+p.getValor());
+		if(this.pais.getSelectedItem() != null) {
+			int fk = getPK(this.pais.getSelectedItem().toString());
+			List<Trupla> prov = U.getProvincias(fk);
+			if(!prov.isEmpty()) {
+				for(Trupla p : prov) {
+					this.provincia.addItem(p.getId()+"."+p.getId_2()+"."+p.getValor());
+				}
 			}
 		}
 	}
@@ -318,7 +315,7 @@ public class Editor extends JFrame {
 	}
 	
 	
-	public void cerrar(WindowEvent e) {
+	public void cerrar(ActionEvent p) {
 		this.frame.dispose();
 	}
 
