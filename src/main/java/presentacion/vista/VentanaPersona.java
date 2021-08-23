@@ -68,28 +68,23 @@ public class VentanaPersona extends JFrame
 		this.setVisible(false);
 	}
 	
-	public void mostrarVentana()
-	{
+	public void mostrarVentana() {
 		this.setVisible(true);
 	}
 	
-	public JTextField getTxtNombre() 
-	{
+	public JTextField getTxtNombre() {
 		return txtNombre;
 	}
 
-	public JTextField getTxtTelefono() 
-	{
+	public JTextField getTxtTelefono() {
 		return txtTelefono;
 	}
 
-	public JButton getBtnAgregarPersona() 
-	{
+	public JButton getBtnAgregarPersona() {
 		return btnAgregarPersona;
 	}
 
-	public void cerrar()
-	{
+	public void cerrar(){
 		this.txtNombre.setText(null);
 		this.txtTelefono.setText(null);
 		this.dispose();

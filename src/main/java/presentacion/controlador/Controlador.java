@@ -9,25 +9,74 @@ import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaPersona;
 import presentacion.vista.Vista;
 import dto.PersonaDTO;
+import presentacion.vista.Editor;
 
-public class Controlador implements ActionListener
-{
+public class Controlador implements ActionListener {
 		private Vista vista;
 		private List<PersonaDTO> personasEnTabla;
 		private VentanaPersona ventanaPersona; 
 		private Agenda agenda;
+		private Editor editor;
+		private int id_selecionado;
 		
-		public Controlador(Vista vista, Agenda agenda)
-		{
+		
+		public Controlador(Vista vista, Agenda agenda) {
 			this.vista = vista;
+			this.editor = new Editor();
 			this.vista.getBtnAgregar().addActionListener(a->ventanaAgregarPersona(a));
 			this.vista.getBtnBorrar().addActionListener(s->borrarPersona(s));
 			this.vista.getBtnReporte().addActionListener(r->mostrarReporte(r));
+			this.vista.getBtnEditar().addActionListener(p -> editarPersona(p));
+			this.editor.getBtnGuardar().addActionListener(p -> guardarCambios(p));
 			this.ventanaPersona = VentanaPersona.getInstance();
 			this.ventanaPersona.getBtnAgregarPersona().addActionListener(p->guardarPersona(p));
 			this.agenda = agenda;
 		}
 		
+
+		
+
+		private void guardarCambios(ActionEvent e) {
+				
+			for(PersonaDTO p : this.personasEnTabla) {
+				if(p.getIdPersona() == this.id_selecionado) {
+					p.setNombre(this.editor.getNombreApellido().getText());
+					p.setTelefono(this.editor.getTelefono().getText());
+					p.setEmail(this.editor.getEmail().getText());
+					p.setCalle(this.editor.getCalle().getText());
+					p.setAltura(this.editor.getAltura().getText());
+					p.setPiso(this.editor.getPiso().getText());
+					p.setdepto(this.editor.getDepto().getText());
+					p.setCumpleanio(this.editor.getCumpleanio().getText());
+					p.setTipo_contacto_id(this.editor.getTipoContacto().getSelectedItem() == null ? -1 : (this.editor.getPK(this.editor.getTipoContacto().getSelectedItem().toString())));
+					p.setLocalidad_id(this.editor.getLocalidad().getSelectedItem() == null ? -1 : this.editor.getPK(this.editor.getLocalidad().getSelectedItem().toString()));
+					
+					
+					this.agenda.update(p);
+					this.refrescarTabla();
+				}
+			}
+		}
+
+		public void borrarPersona(ActionEvent s) {
+			int[] filasSeleccionadas = this.vista.getTablaPersonas().getSelectedRows();
+			for (int fila : filasSeleccionadas) {
+				this.agenda.borrarPersona(this.personasEnTabla.get(fila));
+				
+			}
+			this.refrescarTabla();
+		}
+		
+		
+		private void editarPersona(ActionEvent p) {
+			int[] filasSeleccionadas = this.vista.getTablaPersonas().getSelectedRows();
+			for (int fila : filasSeleccionadas) {
+				this.id_selecionado = this.personasEnTabla.get(fila).getIdPersona();
+				this.editor.mostrar(this.personasEnTabla.get(fila));
+			}
+			this.refrescarTabla();
+		}
+
 		private void ventanaAgregarPersona(ActionEvent a) {
 			this.ventanaPersona.mostrarVentana();
 		}
@@ -40,31 +89,21 @@ public class Controlador implements ActionListener
 			this.refrescarTabla();
 			this.ventanaPersona.cerrar();
 		}
+		
+		
 
 		private void mostrarReporte(ActionEvent r) {
 			ReporteAgenda reporte = new ReporteAgenda(agenda.obtenerPersonas());
 			reporte.mostrar();	
 		}
 
-		public void borrarPersona(ActionEvent s)
-		{
-			int[] filasSeleccionadas = this.vista.getTablaPersonas().getSelectedRows();
-			for (int fila : filasSeleccionadas)
-			{
-				this.agenda.borrarPersona(this.personasEnTabla.get(fila));
-			}
-			
-			this.refrescarTabla();
-		}
 		
-		public void inicializar()
-		{
+		public void inicializar() {
 			this.refrescarTabla();
 			this.vista.show();
 		}
 		
-		private void refrescarTabla()
-		{
+		private void refrescarTabla() {
 			this.personasEnTabla = agenda.obtenerPersonas();
 			this.vista.llenarTabla(this.personasEnTabla);
 		}

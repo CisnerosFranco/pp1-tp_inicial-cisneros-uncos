@@ -15,14 +15,14 @@ public class Conexion
 	{
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver"); // quitar si no es necesario
-			this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/agenda","root","root");
+			Class.forName("com.mysql.cj.jdbc.Driver"); // quitar si no es necesario
+			this.connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/agenda","root","");
 			this.connection.setAutoCommit(false);
-			log.info("Conexión exitosa");
+			log.info("Conexion exitosa");
 		}
 		catch(Exception e)
 		{
-			log.error("Conexión fallida", e);
+			log.error("Conexion fallida", e);
 		}
 	}
 	
