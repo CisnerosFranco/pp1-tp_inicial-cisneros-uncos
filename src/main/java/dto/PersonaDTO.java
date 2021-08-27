@@ -8,8 +8,7 @@ public class PersonaDTO {
 	private int tipo_contacto_id;
 	private int localidad_id;
 	private int provincia_id;
-	private int pais_id;
-	
+	private String mascota_preferida;
 	private String calle;
 	private String altura;
 	private String piso;
@@ -112,13 +111,6 @@ public class PersonaDTO {
 		this.cumpleanio = nacimiento;
 	}
 
-	public int getPais_id() {
-		return pais_id;
-	}
-
-	public void setPais_id(int pais_id) {
-		this.pais_id = pais_id;
-	}
 
 	public int getProvincia_id() {
 		return provincia_id;
@@ -128,6 +120,14 @@ public class PersonaDTO {
 		this.provincia_id = provincia_id;
 	}
 
+	public String getMascota_preferida() {
+		return mascota_preferida;
+	}
 
+	public void setMascota_preferida(String mascota_preferida) {
+		this.mascota_preferida = mascota_preferida;
+	}
+
+	
 }
 

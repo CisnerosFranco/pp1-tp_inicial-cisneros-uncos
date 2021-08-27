@@ -5,8 +5,8 @@ import modelo.Agenda;
 import persistencia.dao.mysql.DAOSQLFactory;
 import presentacion.controlador.Controlador;
 import presentacion.vista.Vista;
+import dto.Tipo_Contacto;
 import dto.UbicacionDTO;
-import dto.Tipo_contactoDTO;
 
 
 public class Main {

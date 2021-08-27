@@ -14,8 +14,8 @@ import dto.PersonaDTO;
 public class PersonaDAOSQL implements PersonaDAO {
 	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono) VALUES(?, ?, ?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
-	private static final String update = "UPDATE personas SET Nombre=?, Telefono=?, Tipo_Contacto_id=?, localidad_id=?, calle=?, altura=?, piso=?, depto=?, email=?, cumpleanio=? WHERE idPersona=?";
-	private static final String update_2 = "UPDATE personas SET Nombre=?, Telefono=?, Tipo_Contacto_id=?, calle=?, altura=?, piso=?, depto=?, email=?, cumpleanio=? WHERE idPersona=?";
+	private static final String update = "UPDATE personas SET Nombre=?, Telefono=?, Tipo_Contacto_id=?, localidad_id=?, calle=?, altura=?, piso=?, depto=?, email=?, cumpleanio=?, mascota_preferida=? WHERE idPersona=?";
+	private static final String update_2 = "UPDATE personas SET Nombre=?, Telefono=?, Tipo_Contacto_id=?, calle=?, altura=?, piso=?, depto=?, email=?, cumpleanio=?, mascota_preferida=? WHERE idPersona=?";
 	private static final String readall = "SELECT * FROM personas";
 	
 		
@@ -83,7 +83,8 @@ public class PersonaDAOSQL implements PersonaDAO {
 				statement.setString(7, P.getDepto());
 				statement.setString(8, P.getEmail());
 				statement.setString(9, P.getCumple());
-				statement.setString(10, Integer.toString(P.getIdPersona()));
+				statement.setString(10, P.getMascota_preferida());
+				statement.setString(11, Integer.toString(P.getIdPersona()));
 				
 				if(statement.executeUpdate() > 0) {
 					conexion.commit();
@@ -102,7 +103,8 @@ public class PersonaDAOSQL implements PersonaDAO {
 				statement.setString(8, P.getDepto());
 				statement.setString(9, P.getEmail());
 				statement.setString(10, P.getCumple());
-				statement.setString(11, Integer.toString(P.getIdPersona()));
+				statement.setString(11, P.getMascota_preferida());
+				statement.setString(12, Integer.toString(P.getIdPersona()));
 				
 				if(statement.executeUpdate() > 0) {
 					conexion.commit();
@@ -151,7 +153,7 @@ public class PersonaDAOSQL implements PersonaDAO {
 		p.setLocalidad_id(r.getInt("localidad_id"));
 		p.setCumpleanio(r.getString("cumpleanio"));
 		p.setTipo_contacto_id(r.getInt("tipo_contacto_id"));
-		
+		p.setMascota_preferida(r.getString("mascota_preferida"));
 		return p;
 	}
 	

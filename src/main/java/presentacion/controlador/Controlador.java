@@ -50,7 +50,7 @@ public class Controlador implements ActionListener {
 					p.setCumpleanio(this.editor.getCumpleanio().getText());
 					p.setTipo_contacto_id(this.editor.getTipoContacto().getSelectedItem() == null ? -1 : (this.editor.getPK(this.editor.getTipoContacto().getSelectedItem().toString())));
 					p.setLocalidad_id(this.editor.getLocalidad().getSelectedItem() == null ? -1 : this.editor.getPK(this.editor.getLocalidad().getSelectedItem().toString()));
-					
+					p.setMascota_preferida(this.editor.getMascotaPreferida().getText());
 					
 					this.agenda.update(p);
 					

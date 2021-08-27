@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 
 import dto.PersonaDTO;
+import dto.Tipo_Contacto;
 import dto.Trupla;
 import dto.Tupla;
 import dto.UbicacionDTO;
@@ -58,6 +59,8 @@ public class Editor extends JFrame {
 	private int id_localidad;
 	List<Trupla> localidades;
 	UbicacionDTO U = UbicacionDTO.constructor();
+	Tipo_Contacto TC = Tipo_Contacto.contructor();
+	private JTextField mascota;
 	
 	/**
 	 * Launch the application.
@@ -91,7 +94,7 @@ public class Editor extends JFrame {
 		frame = new JFrame();
 		frame.setAlwaysOnTop(true);
 		frame.setResizable(false);
-		frame.setBounds(100, 100, 451, 508);
+		frame.setBounds(100, 100, 451, 526);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -106,7 +109,7 @@ public class Editor extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnGuardar.setBounds(179, 427, 114, 29);
+		btnGuardar.setBounds(176, 439, 114, 29);
 		panel.add(btnGuardar);
 		
 		NombreApellido = new JTextField();
@@ -131,7 +134,7 @@ public class Editor extends JFrame {
 		panel.add(lblFechaNacimiento);
 		
 		JLabel lblDatosDeDomicilio = new JLabel("Datos de Domicilio");
-		lblDatosDeDomicilio.setBounds(29, 192, 114, 19);
+		lblDatosDeDomicilio.setBounds(29, 224, 114, 19);
 		panel.add(lblDatosDeDomicilio);
 		
 		Telefono = new JTextField();
@@ -155,50 +158,50 @@ public class Editor extends JFrame {
 		
 		calle = new JTextField();
 		calle.setColumns(10);
-		calle.setBounds(153, 221, 258, 23);
+		calle.setBounds(153, 252, 258, 23);
 		panel.add(calle);
 		
 		altura = new JTextField();
 		altura.setColumns(10);
-		altura.setBounds(153, 255, 66, 23);
+		altura.setBounds(153, 286, 66, 23);
 		panel.add(altura);
 		
 		piso = new JTextField();
 		piso.setColumns(10);
-		piso.setBounds(264, 255, 51, 23);
+		piso.setBounds(262, 286, 51, 23);
 		panel.add(piso);
 		
 		depto = new JTextField();
 		depto.setColumns(10);
-		depto.setBounds(360, 255, 51, 23);
+		depto.setBounds(360, 286, 51, 23);
 		panel.add(depto);
 		
 		JLabel lblPiso = new JLabel("Piso");
-		lblPiso.setBounds(229, 257, 25, 19);
+		lblPiso.setBounds(229, 288, 25, 19);
 		panel.add(lblPiso);
 		
 		JLabel lblDepto = new JLabel("Depto");
-		lblDepto.setBounds(325, 257, 36, 19);
+		lblDepto.setBounds(325, 288, 36, 19);
 		panel.add(lblDepto);
 		
 		JLabel lblCalle = new JLabel("Calle");
-		lblCalle.setBounds(29, 222, 100, 19);
+		lblCalle.setBounds(29, 254, 100, 19);
 		panel.add(lblCalle);
 		
 		JLabel lblAltura = new JLabel("Altura");
-		lblAltura.setBounds(29, 257, 100, 19);
+		lblAltura.setBounds(29, 288, 100, 19);
 		panel.add(lblAltura);
 		
 		pais = new JComboBox();
-		pais.setBounds(153, 293, 258, 23);
+		pais.setBounds(153, 320, 258, 23);
 		panel.add(pais);
 		
 		provincia = new JComboBox();
-		provincia.setBounds(153, 327, 258, 23);
+		provincia.setBounds(153, 354, 258, 23);
 		panel.add(provincia);
 		
 		localidad = new JComboBox();
-		localidad.setBounds(153, 361, 258, 23);
+		localidad.setBounds(153, 388, 258, 23);
 		panel.add(localidad);
 		
 		tipo_contacto = new JComboBox();
@@ -206,16 +209,25 @@ public class Editor extends JFrame {
 		panel.add(tipo_contacto);
 		
 		JLabel lblPais = new JLabel("Pais");
-		lblPais.setBounds(29, 297, 100, 19);
+		lblPais.setBounds(29, 322, 100, 19);
 		panel.add(lblPais);
 		
 		JLabel lblProvincia = new JLabel("Provincia");
-		lblProvincia.setBounds(29, 331, 100, 19);
+		lblProvincia.setBounds(29, 356, 100, 19);
 		panel.add(lblProvincia);
 		
 		JLabel lblLocalidad = new JLabel("Localidad");
-		lblLocalidad.setBounds(29, 365, 100, 19);
+		lblLocalidad.setBounds(29, 390, 100, 19);
 		panel.add(lblLocalidad);
+		
+		mascota = new JTextField();
+		mascota.setColumns(10);
+		mascota.setBounds(153, 163, 258, 23);
+		panel.add(mascota);
+		
+		JLabel lblMascotaPreferida = new JLabel("Mascota Preferida");
+		lblMascotaPreferida.setBounds(29, 161, 114, 19);
+		panel.add(lblMascotaPreferida);
 		
 		
 		//this.btnGuardar.addActionListener(p -> cerrar(p));
@@ -240,18 +252,34 @@ public class Editor extends JFrame {
 		this.piso.setText(P.getPiso());
 		this.altura.setText(P.getAltura());
 		this.tipo_contacto.removeAllItems();
+		this.mascota.setText(P.getMascota_preferida());
 		
-		for(Tupla t: U.getTipoContactos()) {
+		
+		for(Tupla t: TC.getTipoContactos()) {
 			this.tipo_contacto.addItem(t.getId()+"."+t.getValor());
 		}
+		
 		
 		//this.pais.add(Email)
 		
 		//provincias = U.getProvincias(paises.get(0).getId());
+		
 		cargarPaises();
 		cargarProvincias();
 		cargarLocalidades();
-
+		
+		if(P.getLocalidad_id() != 0) {
+			Trupla Loc_2 = U.getLocalidad(P.getLocalidad_id());
+			Trupla prov_2 = U.getProvincia(Loc_2.getId_2());
+			Tupla pais_2 = U.getPais(prov_2.getId_2());
+			this.pais.setSelectedItem(pais_2.getId()+"."+pais_2.getValor());
+			this.provincia.setSelectedItem(prov_2.getId()+"."+prov_2.getId_2()+"."+prov_2.getValor());
+			this.localidad.setSelectedItem(Loc_2.getId()+"."+Loc_2.getId_2()+"."+Loc_2.getValor());
+		}
+		
+		if(P.getTipo_contacto_id() != 0) {
+			this.tipo_contacto.setSelectedIndex(P.getTipo_contacto_id()-1);
+		}
 		
 		this.pais.addActionListener(e -> cargarProvincias());
 		this.provincia.addActionListener(x -> cargarLocalidades());
@@ -418,4 +446,7 @@ public class Editor extends JFrame {
 		return this.tipo_contacto;
 	}
 	
+	public JTextField getMascotaPreferida() {
+		return this.mascota;
+	}
 }

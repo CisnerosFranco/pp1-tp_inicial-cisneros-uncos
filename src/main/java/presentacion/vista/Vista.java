@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import dto.PersonaDTO;
+import dto.Tipo_Contacto;
 import dto.Trupla;
 import dto.Tupla;
 import dto.UbicacionDTO;
@@ -29,9 +30,10 @@ public class Vista
 	private JButton btnEditar;
 	private JButton btnReporte;
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Telefono", "Email", "Tipo", "Pais", "Provincia", "Localidad", "Calle", "Altura", "Piso", "Depto", "cumpleaño"};
+	private  String[] nombreColumnas = {"Nombre y apellido","Telefono", "Email", "Tipo", "Mascota Preferida", "Pais", "Provincia", "Localidad", "Calle", "Altura", "Piso", "Depto", "cumpleaño"};
 	private Editor Editor;
 	private UbicacionDTO U = UbicacionDTO.constructor();
+	private Tipo_Contacto TC = Tipo_Contacto.contructor();
 
 	public Vista() {
 		super();
@@ -143,18 +145,17 @@ public class Vista
 		this.getModelPersonas().setColumnIdentifiers(this.getNombreColumnas());
 
 		for (PersonaDTO p : personasEnTabla) {
-			//String nombre = p.getNombre();
-			//String tel = p.getTelefono();
-			
+			//System.out.println(p.getTipo_contacto_id());
+			//System.out.println(this.TC.getTipoContacto(p.getTipo_contacto_id()));
 			if(p.getLocalidad_id() != 0) {
 				Trupla L = U.getLocalidad(p.getLocalidad_id());
 				Trupla Prov = U.getProvincia(L.getId_2());
 				Tupla pais = U.getPais(Prov.getId_2());
-				Object[] fila = {p.getNombre(), p.getTelefono(), p.getEmail(), this.U.getTipoContacto(p.getTipo_contacto_id()), pais.getValor(), Prov.getValor(), L.getValor(), p.getCalle(), p.getAltura(), p.getPiso(), p.getDepto(), p.getCumple()};
+				Object[] fila = {p.getNombre(), p.getTelefono(), p.getEmail(), this.TC.getTipoContacto(p.getTipo_contacto_id()), p.getMascota_preferida(), pais.getValor(), Prov.getValor(), L.getValor(), p.getCalle(), p.getAltura(), p.getPiso(), p.getDepto(), p.getCumple()};
 				this.getModelPersonas().addRow(fila);
 			
 			} else {
-				Object[] fila = {p.getNombre(), p.getTelefono(), p.getEmail(), this.U.getTipoContacto(p.getTipo_contacto_id()), null, null, null, p.getCalle(), p.getAltura(), p.getPiso(), p.getDepto(), p.getCumple()};
+				Object[] fila = {p.getNombre(), p.getTelefono(), p.getEmail(), this.TC.getTipoContacto(p.getTipo_contacto_id()), p.getMascota_preferida(), null, null, null, p.getCalle(), p.getAltura(), p.getPiso(), p.getDepto(), p.getCumple()};
 				this.getModelPersonas().addRow(fila);
 			}	
 		}

@@ -16,11 +16,10 @@ public class UbicacionDTO {
 	private static String readLocalidad = "select * from localidad";
 	private static String readProv = "select * from provincia";
 	private static String readPais = "select * from pais";
-	private static String readTipoContacto = "select * from tipo_contacto";
+	
 	private static List<Trupla> localidades = new ArrayList<Trupla>();
 	private static List<Trupla> provincias = new ArrayList<Trupla>();
 	private static List<Tupla> paises = new ArrayList<Tupla>();
-	private static List<Tupla> tipo_contacto = new ArrayList<Tupla>();
 	private static UbicacionDTO instancia = null;
 	
 	private UbicacionDTO () {} // El tio Sam privatizo el constructor de la clase.
@@ -33,7 +32,6 @@ public class UbicacionDTO {
 		readLocalidades();
 		readProvincias();
 		readPaises();
-		readTipoContacto();
 		return instancia;
 	}
 	
@@ -89,22 +87,6 @@ public class UbicacionDTO {
 		}
 	}
 	
-	private static void readTipoContacto() {
-		tipo_contacto.clear();
-		PreparedStatement statement;
-		ResultSet resultSet; //Guarda el resultado de la query
-		Conexion conexion = Conexion.getConexion();
-		try  {
-			statement = conexion.getSQLConexion().prepareStatement(readTipoContacto);
-			resultSet = statement.executeQuery();
-			while(resultSet.next()) {
-				tipo_contacto.add(new Tupla(resultSet.getInt("id"), resultSet.getString("tipo")));
-			}
-		} 
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	
 
@@ -168,21 +150,7 @@ public class UbicacionDTO {
 		return ret;
 	}
 	
-	public List<Tupla> getTipoContactos() {
-		return this.tipo_contacto;
-	}
 	
-	public String getTipoContacto(int id_contacto) {
-		String ret = "";
-		int index = 0;
-		while(ret == null) {
-			if(tipo_contacto.get(index).getId() == id_contacto) {
-				ret = tipo_contacto.get(index).getValor();
-			}
-			index++;
-		}
-		return ret;
-	}
 	
 	
 	
