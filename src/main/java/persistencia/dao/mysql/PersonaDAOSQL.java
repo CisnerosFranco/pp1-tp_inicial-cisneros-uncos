@@ -16,7 +16,8 @@ public class PersonaDAOSQL implements PersonaDAO {
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String update = "UPDATE personas SET Nombre=?, Telefono=?, Tipo_Contacto_id=?, localidad_id=?, calle=?, altura=?, piso=?, depto=?, email=?, cumpleanio=?, mascota_preferida=? WHERE idPersona=?";
 	private static final String update_2 = "UPDATE personas SET Nombre=?, Telefono=?, Tipo_Contacto_id=?, calle=?, altura=?, piso=?, depto=?, email=?, cumpleanio=?, mascota_preferida=? WHERE idPersona=?";
-	private static final String readall = "SELECT * FROM personas";
+	private static final String readall = "select * from personas as P left join tipo_contacto as T ON P.tipo_contacto_id = T.id left join localidad as L ON P.localidad_id = L.id \r\n"
+										+ "left join provincia as Prov ON L.id_provincia= Prov.id left join pais on prov.id_pais = pais.id order by L.localidad;";
 	
 		
 	
@@ -154,6 +155,10 @@ public class PersonaDAOSQL implements PersonaDAO {
 		p.setCumpleanio(r.getString("cumpleanio"));
 		p.setTipo_contacto_id(r.getInt("tipo_contacto_id"));
 		p.setMascota_preferida(r.getString("mascota_preferida"));
+		p.setPais(r.getString("pais"));
+		p.setProvincia(r.getString("provincia"));
+		p.setLocalidad(r.getString("localidad"));
+		
 		return p;
 	}
 	

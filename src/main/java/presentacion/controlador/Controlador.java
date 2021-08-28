@@ -52,7 +52,6 @@ public class Controlador implements ActionListener {
 					p.setLocalidad_id(this.editor.getLocalidad().getSelectedItem() == null ? -1 : this.editor.getPK(this.editor.getLocalidad().getSelectedItem().toString()));
 					p.setMascota_preferida(this.editor.getMascotaPreferida().getText());
 					
-					this.agenda.update(p);
 					
 					
 				}

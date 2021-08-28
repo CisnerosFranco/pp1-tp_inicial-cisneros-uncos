@@ -32,7 +32,7 @@ public class Vista
 	private DefaultTableModel modelPersonas;
 	private  String[] nombreColumnas = {"Nombre y apellido","Telefono", "Email", "Tipo", "Mascota Preferida", "Pais", "Provincia", "Localidad", "Calle", "Altura", "Piso", "Depto", "cumpleaño"};
 	private Editor Editor;
-	private UbicacionDTO U = UbicacionDTO.constructor();
+	
 	private Tipo_Contacto TC = Tipo_Contacto.contructor();
 
 	public Vista() {
@@ -144,20 +144,9 @@ public class Vista
 		this.getModelPersonas().setColumnCount(0);
 		this.getModelPersonas().setColumnIdentifiers(this.getNombreColumnas());
 
-		for (PersonaDTO p : personasEnTabla) {
-			//System.out.println(p.getTipo_contacto_id());
-			//System.out.println(this.TC.getTipoContacto(p.getTipo_contacto_id()));
-			if(p.getLocalidad_id() != 0) {
-				Trupla L = U.getLocalidad(p.getLocalidad_id());
-				Trupla Prov = U.getProvincia(L.getId_2());
-				Tupla pais = U.getPais(Prov.getId_2());
-				Object[] fila = {p.getNombre(), p.getTelefono(), p.getEmail(), this.TC.getTipoContacto(p.getTipo_contacto_id()), p.getMascota_preferida(), pais.getValor(), Prov.getValor(), L.getValor(), p.getCalle(), p.getAltura(), p.getPiso(), p.getDepto(), p.getCumple()};
-				this.getModelPersonas().addRow(fila);
-			
-			} else {
-				Object[] fila = {p.getNombre(), p.getTelefono(), p.getEmail(), this.TC.getTipoContacto(p.getTipo_contacto_id()), p.getMascota_preferida(), null, null, null, p.getCalle(), p.getAltura(), p.getPiso(), p.getDepto(), p.getCumple()};
-				this.getModelPersonas().addRow(fila);
-			}	
+		for (PersonaDTO p : personasEnTabla) {	
+			Object[] fila = {p.getNombre(), p.getTelefono(), p.getEmail(), this.TC.getTipoContacto(p.getTipo_contacto_id()), p.getMascota_preferida(), p.getPais(), p.getProvincia(), p.getLocalidad(), p.getCalle(), p.getAltura(), p.getPiso(), p.getDepto(), p.getCumple()};
+			this.getModelPersonas().addRow(fila);
 		}
 		
 	}

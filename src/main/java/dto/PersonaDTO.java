@@ -7,7 +7,9 @@ public class PersonaDTO {
 	private String telefono;
 	private int tipo_contacto_id;
 	private int localidad_id;
-	private int provincia_id;
+	private String Localidad;
+	private String Provincia;
+	private String Pais;
 	private String mascota_preferida;
 	private String calle;
 	private String altura;
@@ -112,14 +114,6 @@ public class PersonaDTO {
 	}
 
 
-	public int getProvincia_id() {
-		return provincia_id;
-	}
-
-	public void setProvincia_id(int provincia_id) {
-		this.provincia_id = provincia_id;
-	}
-
 	public String getMascota_preferida() {
 		return mascota_preferida;
 	}
@@ -128,6 +122,30 @@ public class PersonaDTO {
 		this.mascota_preferida = mascota_preferida;
 	}
 
+	public String getPais() {
+		return Pais;
+	}
+
+	public void setPais(String pais) {
+		Pais = pais;
+	}
+
+	public String getProvincia() {
+		return Provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		Provincia = provincia;
+	}
+
+	public String getLocalidad() {
+		return Localidad;
+	}
+
+	public void setLocalidad(String localidad) {
+		Localidad = localidad;
+	}
+	
 	
 }
 
