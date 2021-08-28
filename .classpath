@@ -15,11 +15,13 @@
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
@@ -29,7 +31,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
-			<attribute name="module" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
@@ -37,7 +38,6 @@
 	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
 	<classpathentry kind="lib" path="reportes/castor-core-1.4.1.jar"/>
 	<classpathentry kind="lib" path="reportes/bcprov-jdk15on-1.64.jar"/>
-	<classpathentry kind="lib" path="reportes/Blank_A4_Landscape.jasper"/>
 	<classpathentry kind="lib" path="reportes/castor-xml-1.4.1.jar"/>
 	<classpathentry kind="lib" path="reportes/commons-beanutils-1.9.4.jar"/>
 	<classpathentry kind="lib" path="reportes/commons-collections-3.2.2.jar"/>
@@ -56,7 +56,5 @@
 	<classpathentry kind="lib" path="reportes/jfreechart-1.0.19.jar"/>
 	<classpathentry kind="lib" path="reportes/ReporteAgenda.jasper"/>
 	<classpathentry kind="lib" path="reportes/ReporteAgenda.jrxml"/>
-	<classpathentry kind="lib" path="reportes/ReportView.jasper"/>
-	<classpathentry kind="lib" path="reportes/ReportView.jrxml"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
