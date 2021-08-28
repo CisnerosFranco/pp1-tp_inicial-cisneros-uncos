@@ -6,6 +6,7 @@ public class PersonaDTO {
 	private String nombre;
 	private String telefono;
 	private int tipo_contacto_id;
+	private String tipo_contacto;
 	private int localidad_id;
 	private String Localidad;
 	private String Provincia;
@@ -24,6 +25,15 @@ public class PersonaDTO {
 		this.telefono = telefono;
 	}
 	
+
+	public String getCumpleanio() {
+		return cumpleanio;
+	}
+
+	public void setDepto(String depto) {
+		this.depto = depto;
+	}
+
 	public int getIdPersona() {
 		return this.idPersona;
 	}
@@ -144,6 +154,16 @@ public class PersonaDTO {
 
 	public void setLocalidad(String localidad) {
 		Localidad = localidad;
+	}
+
+
+	public String getTipo_contacto() {
+		return tipo_contacto;
+	}
+
+
+	public void setTipo_contacto(String tipo_contacto) {
+		this.tipo_contacto = tipo_contacto;
 	}
 	
 	

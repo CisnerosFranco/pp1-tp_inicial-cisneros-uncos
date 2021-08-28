@@ -10,6 +10,7 @@ import java.util.List;
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.PersonaDAO;
 import dto.PersonaDTO;
+import dto.Tipo_Contacto;
 
 public class PersonaDAOSQL implements PersonaDAO {
 	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono) VALUES(?, ?, ?)";
@@ -18,7 +19,7 @@ public class PersonaDAOSQL implements PersonaDAO {
 	private static final String update_2 = "UPDATE personas SET Nombre=?, Telefono=?, Tipo_Contacto_id=?, calle=?, altura=?, piso=?, depto=?, email=?, cumpleanio=?, mascota_preferida=? WHERE idPersona=?";
 	private static final String readall = "select * from personas as P left join tipo_contacto as T ON P.tipo_contacto_id = T.id left join localidad as L ON P.localidad_id = L.id \r\n"
 										+ "left join provincia as Prov ON L.id_provincia= Prov.id left join pais on prov.id_pais = pais.id order by L.localidad;";
-	
+	Tipo_Contacto TC = Tipo_Contacto.contructor();
 		
 	
 	public boolean insert(PersonaDTO persona) {
@@ -158,7 +159,7 @@ public class PersonaDAOSQL implements PersonaDAO {
 		p.setPais(r.getString("pais"));
 		p.setProvincia(r.getString("provincia"));
 		p.setLocalidad(r.getString("localidad"));
-		
+		p.setTipo_contacto(TC.getTipoContacto(r.getInt("tipo_contacto_id")));
 		return p;
 	}
 	

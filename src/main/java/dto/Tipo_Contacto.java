@@ -48,7 +48,6 @@ public class Tipo_Contacto {
 	}
 	
 	public String getTipoContacto(int id_contacto) {
-		System.out.println("*"+id_contacto);
 		String ret = "";
 		int index = 0;
 		if(id_contacto != 0) {

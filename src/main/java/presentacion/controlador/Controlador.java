@@ -37,7 +37,6 @@ public class Controlador implements ActionListener {
 		
 
 		private void guardarCambios(ActionEvent e) {
-				
 			for(PersonaDTO p : this.personasEnTabla) {
 				if(p.getIdPersona() == this.id_selecionado) {
 					p.setNombre(this.editor.getNombreApellido().getText());
@@ -51,9 +50,7 @@ public class Controlador implements ActionListener {
 					p.setTipo_contacto_id(this.editor.getTipoContacto().getSelectedItem() == null ? -1 : (this.editor.getPK(this.editor.getTipoContacto().getSelectedItem().toString())));
 					p.setLocalidad_id(this.editor.getLocalidad().getSelectedItem() == null ? -1 : this.editor.getPK(this.editor.getLocalidad().getSelectedItem().toString()));
 					p.setMascota_preferida(this.editor.getMascotaPreferida().getText());
-					
-					
-					
+					agenda.update(p);
 				}
 			}
 			this.editor.cerrar(e);
