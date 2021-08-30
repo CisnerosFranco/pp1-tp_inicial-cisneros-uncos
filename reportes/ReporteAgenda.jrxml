@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="700" pageHeight="842" columnWidth="660" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="284e0c88-a4b2-4ff8-98a2-d67b80bcffaf">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="1500" pageHeight="842" columnWidth="1460" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="284e0c88-a4b2-4ff8-98a2-d67b80bcffaf">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="ireport.zoom" value="1.0000000000000004"/>
-	<property name="ireport.x" value="6"/>
-	<property name="ireport.y" value="41"/>
+	<property name="ireport.x" value="806"/>
+	<property name="ireport.y" value="36"/>
 	<property name="net.sf.jasperreports.chart.pie.ignore.duplicated.key" value="true"/>
 	<parameter name="Fecha" class="java.lang.String"/>
 	<queryString language="SQL">
@@ -14,6 +14,24 @@ inner join (select L_2.id, count(distinct P_2.idPersona) as Total from personas 
 ON L.id = sq.id
 order by L.localidad;]]>
 	</queryString>
+	<field name="pais" class="java.lang.String">
+		<fieldDescription><![CDATA[pais]]></fieldDescription>
+	</field>
+	<field name="provincia" class="java.lang.String">
+		<fieldDescription><![CDATA[provincia]]></fieldDescription>
+	</field>
+	<field name="calle" class="java.lang.String">
+		<fieldDescription><![CDATA[calle]]></fieldDescription>
+	</field>
+	<field name="altura" class="java.lang.String">
+		<fieldDescription><![CDATA[altura]]></fieldDescription>
+	</field>
+	<field name="piso" class="java.lang.String">
+		<fieldDescription><![CDATA[piso]]></fieldDescription>
+	</field>
+	<field name="depto" class="java.lang.String">
+		<fieldDescription><![CDATA[depto]]></fieldDescription>
+	</field>
 	<field name="telefono" class="java.lang.String">
 		<fieldDescription><![CDATA[telefono]]></fieldDescription>
 	</field>
@@ -41,7 +59,7 @@ order by L.localidad;]]>
 	<group name="Localidades_group">
 		<groupExpression><![CDATA[$F{localidad}]]></groupExpression>
 		<groupHeader>
-			<band height="26">
+			<band height="22">
 				<textField>
 					<reportElement x="3" y="2" width="100" height="20" uuid="9da8cc2b-e399-4986-a92b-795f9074c455"/>
 					<textFieldExpression><![CDATA[$F{localidad}]]></textFieldExpression>
@@ -91,7 +109,7 @@ order by L.localidad;]]>
 	<columnHeader>
 		<band height="37" splitType="Stretch">
 			<frame>
-				<reportElement x="5" y="7" width="674" height="23" uuid="23209a62-cc9d-4b81-8e93-aa9cc3a92b36"/>
+				<reportElement x="-1" y="9" width="1453" height="23" uuid="23209a62-cc9d-4b81-8e93-aa9cc3a92b36"/>
 				<staticText>
 					<reportElement x="37" y="0" width="117" height="21" uuid="6f5462fa-eb72-479f-bb27-fb5ef7144791"/>
 					<textElement textAlignment="Center">
@@ -127,13 +145,62 @@ order by L.localidad;]]>
 					</textElement>
 					<text><![CDATA[Tipo Contacto]]></text>
 				</staticText>
+				<staticText>
+					<reportElement x="638" y="1" width="100" height="20" uuid="ecd8defc-f99c-41c0-bcaa-1578dc8854fd"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[Cumpleaño]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="753" y="0" width="100" height="20" uuid="53f650a5-fe21-48c2-a339-06d481027747"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[Pais]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="865" y="1" width="100" height="20" uuid="2c86712a-53e5-41a1-8f92-c96d7cbeeb23"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[Provincia]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="977" y="1" width="100" height="20" uuid="db971ada-e432-431b-9464-71336a94f60e"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[Calle]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1092" y="0" width="100" height="20" uuid="94c2f4f8-1a43-4a98-919f-93189dbd8480"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[Altura]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1216" y="0" width="100" height="20" uuid="d9719484-73ce-4526-88df-d8d23d67794f"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[Piso]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1335" y="0" width="100" height="20" uuid="ca297605-6e83-4ba3-a1d0-7f393bbba7ea"/>
+					<textElement textAlignment="Center">
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[Depto]]></text>
+				</staticText>
 			</frame>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="26" splitType="Stretch">
 			<textField>
-				<reportElement x="170" y="7" width="100" height="18" uuid="dd3f7d4c-c2c3-4ee6-8d98-1b88fe0228ec"/>
+				<reportElement x="186" y="6" width="100" height="18" uuid="dd3f7d4c-c2c3-4ee6-8d98-1b88fe0228ec"/>
 				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -141,16 +208,44 @@ order by L.localidad;]]>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="286" y="5" width="100" height="20" uuid="1a8b15fe-b02c-45ac-bfd4-b3c222107d82"/>
+				<reportElement x="304" y="4" width="100" height="20" uuid="1a8b15fe-b02c-45ac-bfd4-b3c222107d82"/>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="404" y="5" width="100" height="20" uuid="17171ab7-0c77-4f07-a555-446f755c637a"/>
+				<reportElement x="422" y="4" width="100" height="20" uuid="17171ab7-0c77-4f07-a555-446f755c637a"/>
 				<textFieldExpression><![CDATA[$F{mascota_preferida}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="545" y="6" width="100" height="20" uuid="8952175a-22ee-4833-adc7-a16d81c15e16"/>
 				<textFieldExpression><![CDATA[$F{tipo_contacto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="672" y="5" width="100" height="20" uuid="da9f0322-53f1-4aa7-a7d8-a1f76b3b6063"/>
+				<textFieldExpression><![CDATA[$F{cumpleanio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="788" y="5" width="100" height="20" uuid="46045f24-2544-4963-88b8-ecc4dcb3cf09"/>
+				<textFieldExpression><![CDATA[$F{pais}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="899" y="5" width="100" height="20" uuid="0d590f0e-0f67-4a7b-84b6-77ce2593368a"/>
+				<textFieldExpression><![CDATA[$F{provincia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="999" y="4" width="100" height="20" uuid="e06fc876-cd0d-42e0-84bf-bf05878ffdf2"/>
+				<textFieldExpression><![CDATA[$F{calle}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1115" y="4" width="100" height="20" uuid="83d9435f-65ce-4180-bdb0-83ae22bc48d6"/>
+				<textFieldExpression><![CDATA[$F{altura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1234" y="5" width="100" height="20" uuid="83af7772-3a9f-4d93-8bc0-58897b89d163"/>
+				<textFieldExpression><![CDATA[$F{piso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1380" y="6" width="100" height="20" uuid="f349102c-070b-495d-8c10-a090b7d06883"/>
+				<textFieldExpression><![CDATA[$F{depto}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
