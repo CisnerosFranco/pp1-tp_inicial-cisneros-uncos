@@ -61,7 +61,7 @@ insert into localidad (id_provincia, localidad) values (1, "San Miguel");
 insert into localidad (id_provincia, localidad) values (2, "Carlos Paz");
 insert into localidad (id_provincia, localidad) values (2, "Cordoba");
 insert into localidad (id_provincia, localidad) values (3, "La QUIACA");
-insert into localidad (id_provincia, localidad) values (4, "San Miguel");
+insert into localidad (id_provincia, localidad) values (4, "San Miguel de Tucuman");
 
 insert into tipo_contacto (tipo) values("Otros");
 insert into tipo_contacto (tipo) values("papá");
