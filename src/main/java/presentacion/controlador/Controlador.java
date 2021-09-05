@@ -5,11 +5,14 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import modelo.Agenda;
+import persistencia.conexion.Conexion;
+import persistencia.dao.mysql.DAOSQLFactory;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VentanaPersona;
 import presentacion.vista.Vista;
 import dto.PersonaDTO;
 import presentacion.vista.Editor;
+import presentacion.vista.Registracion;
 
 public class Controlador implements ActionListener {
 		private Vista vista;
@@ -18,23 +21,49 @@ public class Controlador implements ActionListener {
 		private Agenda agenda;
 		private Editor editor;
 		private int id_selecionado;
+		private Registracion index;
 		
-		
-		public Controlador(Vista vista, Agenda agenda) {
-			this.vista = vista;
-			this.editor = new Editor();
-			this.vista.getBtnAgregar().addActionListener(a->ventanaAgregarPersona(a));
-			this.vista.getBtnBorrar().addActionListener(s->borrarPersona(s));
-			this.vista.getBtnReporte().addActionListener(r->mostrarReporte(r));
-			this.vista.getBtnEditar().addActionListener(p -> editarPersona(p));
-			this.editor.getBtnGuardar().addActionListener(p -> guardarCambios(p));
-			this.ventanaPersona = VentanaPersona.getInstance();
-			this.ventanaPersona.getBtnAgregarPersona().addActionListener(p->guardarPersona(p));
-			this.agenda = agenda;
+		public Controlador() {
+			
+			this.index = new Registracion();
+			this.index.getBTNIniciar().addActionListener(e -> validarUsuario());
+			
+			/*
+			
+			*/
 		}
 		
 
 		
+
+		private void validarUsuario() {
+			String user = this.index.getUsuario().getText();
+			String pass = new String(this.index.getPassword().getPassword());
+			System.out.println("user:" + user + " pass:"+pass);
+			System.out.println(Conexion.testConection(user, pass));
+			if(!Conexion.testConection(user, pass)) {
+				
+				
+			} else {
+				
+				this.vista = new Vista();
+				this.agenda = new Agenda(new DAOSQLFactory());
+				this.editor = new Editor();
+				this.vista.getBtnAgregar().addActionListener(a->ventanaAgregarPersona(a));
+				this.vista.getBtnBorrar().addActionListener(s->borrarPersona(s));
+				this.vista.getBtnReporte().addActionListener(r->mostrarReporte(r));
+				this.vista.getBtnEditar().addActionListener(p -> editarPersona(p));
+				this.editor.getBtnGuardar().addActionListener(p -> guardarCambios(p));
+				this.ventanaPersona = VentanaPersona.getInstance();
+				this.ventanaPersona.getBtnAgregarPersona().addActionListener(p->guardarPersona(p));
+				this.agenda = agenda;
+				this.refrescarTabla();
+				this.vista.show();
+			}
+		}
+
+
+
 
 		private void guardarCambios(ActionEvent e) {
 			for(PersonaDTO p : this.personasEnTabla) {
@@ -51,6 +80,7 @@ public class Controlador implements ActionListener {
 					p.setLocalidad_id(this.editor.getLocalidad().getSelectedItem() == null ? -1 : this.editor.getPK(this.editor.getLocalidad().getSelectedItem().toString()));
 					p.setMascota_preferida(this.editor.getMascotaPreferida().getText());
 					agenda.update(p);
+					
 				}
 			}
 			this.editor.cerrar(e);
@@ -97,8 +127,9 @@ public class Controlador implements ActionListener {
 
 		
 		public void inicializar() {
-			this.refrescarTabla();
-			this.vista.show();
+			//this.refrescarTabla();
+			//this.vista.show();
+			this.index.show();
 		}
 		
 		private void refrescarTabla() {

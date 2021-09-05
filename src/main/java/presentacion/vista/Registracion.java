@@ -1,10 +1,16 @@
 package presentacion.vista;
 
 import java.awt.EventQueue;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import persistencia.conexion.Conexion;
+
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -14,6 +20,7 @@ public class Registracion {
 	private JFrame frame;
 	private JTextField usuario;
 	private JPasswordField passwordField;
+	private JButton iniciar;
 
 	/**
 	 * Launch the application.
@@ -64,10 +71,34 @@ public class Registracion {
 		passwordField.setBounds(144, 105, 229, 27);
 		frame.getContentPane().add(passwordField);
 		
-		JButton iniciar = new JButton("INICIAR");
+		iniciar = new JButton("INICIAR");
 		iniciar.setForeground(Color.BLACK);
 		iniciar.setBackground(Color.WHITE);
 		iniciar.setBounds(167, 203, 111, 27);
 		frame.getContentPane().add(iniciar);
+	}
+
+	public void show() {		
+		this.frame.setVisible(true);
+	}
+	
+	public JTextField getUsuario() {
+		return this.usuario;
+	}
+	
+	public void setUsuario(String usuario) {
+		this.usuario.setText(usuario);
+	}
+	
+	public JPasswordField getPassword() {
+		return this.passwordField;
+	}
+	
+	public void setPassword(String Pass) {
+		this.passwordField.setText(Pass);
+	}
+	
+	public JButton getBTNIniciar() {
+		return this.iniciar;
 	}
 }
